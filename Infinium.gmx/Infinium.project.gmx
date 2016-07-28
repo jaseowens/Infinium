@@ -14,6 +14,7 @@
     <sprite>sprites\sArrow2</sprite>
     <sprite>sprites\sPlanet</sprite>
     <sprite>sprites\sDamage</sprite>
+    <sprite>sprites\sChunks</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -31,6 +32,7 @@
     <object>objects\oArrow2</object>
     <object>objects\oPlanet</object>
     <object>objects\oDamage</object>
+    <object>objects\oChunk</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rMain</room>
