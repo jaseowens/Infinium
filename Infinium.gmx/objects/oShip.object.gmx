@@ -36,6 +36,7 @@ hsp = 0;
 vsp = 0;
 thrust = 0;
 
+instance_create(0,0,oController);
 
 </string>
           </argument>
@@ -58,6 +59,7 @@ thrust = 0;
           <argument>
             <kind>1</kind>
             <string>///Zoom
+/*
 //max_zoom_scale is the maximum zoom that the camera is capable of (zoomed out)
 max_zoom_scale = 1.0;
  
@@ -164,7 +166,7 @@ if(keyboard_check(ord('S'))){
             <kind>1</kind>
             <string>///Zoom
 
-
+/*
 zoom();
 </string>
           </argument>
@@ -189,6 +191,7 @@ zoom();
             <string>///Fire (Primary)
 if(mouse_check_button_released(mb_left)){
     arr = instance_create(x,y,oArrow);
+    arr.image_angle = image_angle;
     arr.direction = point_direction(x,y,mouse_x,mouse_y);
     arr.speed = speed+15;
 }

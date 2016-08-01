@@ -15,8 +15,12 @@
     <sprite>sprites\sPlanet</sprite>
     <sprite>sprites\sDamage</sprite>
     <sprite>sprites\sChunks</sprite>
+    <sprite>sprites\sStar</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bgStar32</background>
+    <background>background\bgMain</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\playerMovement.gml</script>
@@ -25,6 +29,7 @@
     <scripts name="Trail">
       <script>scripts\draw_trail.gml</script>
     </scripts>
+    <script>scripts\zoomCamera.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\oShip</object>
@@ -33,6 +38,7 @@
     <object>objects\oPlanet</object>
     <object>objects\oDamage</object>
     <object>objects\oChunk</object>
+    <object>objects\oController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rMain</room>
