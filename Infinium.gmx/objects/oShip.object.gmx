@@ -130,8 +130,8 @@ dir = image_angle;
 
 if(keyboard_check(vk_space)){
     
-    hsp *= 0.85;
-    vsp *= 0.85;
+    hsp *= 0.80;
+    vsp *= 0.80;
 
     thrust += distance_to_point(mouse_x,mouse_y)/5000;
     if(thrust &gt; 10){
@@ -323,7 +323,7 @@ zoomPerStep = 2.5;
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -341,7 +341,48 @@ zoomPerStep = 2.5;
           <argument>
             <kind>1</kind>
             <string>
-draw_trail(32,4,c_white,-1,true,1);
+draw_set_font(faConsole);
+draw_set_colour(c_white);
+draw_set_halign(fa_left);
+
+draw_text(5,2,"Delta: " + string(fps_real));
+draw_text(5,16,"FPS: " + string(fps));
+draw_text(5,30,"Speed: " + string(speed));
+
+b = $A9A209;
+g = $54A909;
+
+draw_set_alpha(0.75);
+draw_sprite(sBB,0,10,710);
+draw_healthbar(13,710,341,660,speed*2,c_white,g,b,0,false,false);
+draw_set_alpha(1);
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_set_alpha(0.75);
+draw_trail(32,4,c_gray,-1,true,1);
+draw_set_alpha(1);
 draw_self();
 
 </string>

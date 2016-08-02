@@ -10,6 +10,7 @@ for(xx = startX; xx < 20480; xx += 64){
             perc2 = irandom_range(1,100);
             if(perc2 <= 33){
                 tile_add(bgStar32,0,0,32,32,xx,yy,-10);
+                instance_create(xx,yy,oMeteor);
             } else if(perc2 <= 66 && perc2 > 33){
                 tile_add(bgStar16,0,0,16,16,xx,yy,-11);
             } else{

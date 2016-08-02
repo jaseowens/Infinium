@@ -15,7 +15,10 @@
     <sprite>sprites\sPlanet</sprite>
     <sprite>sprites\sDamage</sprite>
     <sprite>sprites\sChunks</sprite>
-    <sprite>sprites\sStar</sprite>
+    <sprite>sprites\sMeteor</sprite>
+    <sprite>sprites\sBoostbar</sprite>
+    <sprite>sprites\sBB</sprite>
+    <sprite>sprites\sMouse</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgMain</background>
@@ -34,6 +37,9 @@
     <script>scripts\zoomCamera.gml</script>
     <script>scripts\generateStarField.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\faConsole</font>
+  </fonts>
   <objects name="objects">
     <object>objects\oShip</object>
     <object>objects\oArrow</object>
@@ -42,6 +48,8 @@
     <object>objects\oDamage</object>
     <object>objects\oChunk</object>
     <object>objects\oController</object>
+    <object>objects\oMeteor</object>
+    <object>objects\oMouse</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rMain</room>
