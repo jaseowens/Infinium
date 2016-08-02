@@ -36,6 +36,14 @@ hsp = 0;
 vsp = 0;
 thrust = 0;
 
+//Shooting
+variationAmount = 8;
+variation = 0;
+
+canShootTimer = 0;
+canShoot = false;
+fireDelayTime = 1;
+
 //instance_create(0,0,oController);
 
 </string>
@@ -238,11 +246,22 @@ zoom();
           <argument>
             <kind>1</kind>
             <string>///Fire (Primary)
-if(mouse_check_button_released(mb_left)){
+if(!canShoot){
+    if(canShootTimer &lt;= fireDelayTime){
+        canShootTimer++;
+    } else{
+        canShoot = true;
+    }
+}
+
+if(mouse_check_button(mb_left) &amp;&amp; canShoot){
     arr = instance_create(x,y,oArrow);
-    arr.image_angle = image_angle;
-    arr.direction = point_direction(x,y,mouse_x,mouse_y);
+    variation = random_range(-variationAmount,variationAmount);
+    arr.direction = point_direction(x,y,mouse_x,mouse_y) + variation;
+    arr.image_angle = arr.direction;
     arr.speed = speed+15;
+    canShootTimer = 0;
+    canShoot = false;
 }
 </string>
           </argument>
@@ -269,6 +288,51 @@ if(mouse_check_button_released(mb_right)){
     arr = instance_create(x,y,oArrow2);
     arr.direction = point_direction(x,y,mouse_x,mouse_y);
     arr.speed = speed+5;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="oMeteor">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>xx = x;
+yy = y;
+
+
+with(other){
+    repeat(3){
+        c = instance_create(x,y,oChunk);
+        c.direction = random_range(0,359);
+        c.speed = random_range(3,9);
+    }
+    
+    dir2 = oShip.direction;
+    x3 = lengthdir_x(sprite_width,dir2);
+    y3 = lengthdir_y(sprite_height,dir2);
+    repeat(3){
+        c = instance_create(x3,y3,oChunk);
+        c.direction = random_range(0,359);
+        c.speed = random_range(3,9);
+    }
+    
+    alarm[0] = 15;
+    
 }
 </string>
           </argument>
