@@ -18,8 +18,10 @@
     <sprite>sprites\sStar</sprite>
   </sprites>
   <backgrounds name="background">
-    <background>background\bgStar32</background>
     <background>background\bgMain</background>
+    <background>background\bgStar32</background>
+    <background>background\bgStar16</background>
+    <background>background\bgStar8</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -30,6 +32,7 @@
       <script>scripts\draw_trail.gml</script>
     </scripts>
     <script>scripts\zoomCamera.gml</script>
+    <script>scripts\generateStarField.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\oShip</object>
