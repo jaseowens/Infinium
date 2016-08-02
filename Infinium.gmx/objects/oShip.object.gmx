@@ -318,16 +318,7 @@ yy = y;
 with(other){
     repeat(3){
         c = instance_create(x,y,oChunk);
-        c.direction = random_range(0,359);
-        c.speed = random_range(3,9);
-    }
-    
-    dir2 = oShip.direction;
-    x3 = lengthdir_x(sprite_width,dir2);
-    y3 = lengthdir_y(sprite_height,dir2);
-    repeat(3){
-        c = instance_create(x3,y3,oChunk);
-        c.direction = random_range(0,359);
+        c.direction = random_range(oShip.direction-35,oShip.direction+35);
         c.speed = random_range(3,9);
     }
     

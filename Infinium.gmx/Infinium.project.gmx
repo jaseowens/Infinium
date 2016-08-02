@@ -19,6 +19,7 @@
     <sprite>sprites\sBoostbar</sprite>
     <sprite>sprites\sBB</sprite>
     <sprite>sprites\sMouse</sprite>
+    <sprite>sprites\sExplosion</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgMain</background>
@@ -50,6 +51,7 @@
     <object>objects\oController</object>
     <object>objects\oMeteor</object>
     <object>objects\oMouse</object>
+    <object>objects\oExplosion</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rMain</room>
