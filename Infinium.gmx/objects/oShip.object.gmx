@@ -141,16 +141,16 @@ if(keyboard_check(vk_space)){
     hsp *= 0.80;
     vsp *= 0.80;
 
-    thrust += distance_to_point(mouse_x,mouse_y)/5000;
-    if(thrust &gt; 10){
-        thrust = 10;
+    thrust += distance_to_point(mouse_x,mouse_y)/10000;
+    if(thrust &gt; 5){
+        thrust = 5;
     }
     
     hsp += lengthdir_x(thrust,dir);
     vsp += lengthdir_y(thrust,dir);
     
 } else{
-    thrust *= 0.85;
+    thrust *= 0.95;
 }
 
 hspeed = hsp;
@@ -396,6 +396,8 @@ zoomPerStep = 2.5;
           <argument>
             <kind>1</kind>
             <string>
+display_set_gui_size(1280,720);
+
 draw_set_font(faConsole);
 draw_set_colour(c_white);
 draw_set_halign(fa_left);
@@ -409,7 +411,7 @@ g = $54A909;
 
 draw_set_alpha(0.75);
 draw_sprite(sBB,0,10,710);
-draw_healthbar(13,710,341,660,speed*2,c_white,g,b,0,false,false);
+draw_healthbar(13,710,341,660,speed*4,c_white,g,b,0,false,false);
 draw_set_alpha(1);
 
 

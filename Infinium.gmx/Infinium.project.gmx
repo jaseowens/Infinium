@@ -28,6 +28,8 @@
     <sprites name="Title Screen">
       <sprite>sprites\sMeteorTitleScreen</sprite>
       <sprite>sprites\sOrb</sprite>
+      <sprite>sprites\sTitleTrail</sprite>
+      <sprite>sprites\sArrowTitle</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -35,6 +37,7 @@
     <background>background\bgStar32</background>
     <background>background\bgStar16</background>
     <background>background\bgStar8</background>
+    <background>background\bgStar4</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -46,6 +49,7 @@
     </scripts>
     <script>scripts\zoomCamera.gml</script>
     <script>scripts\generateStarField.gml</script>
+    <script>scripts\generateStarFieldTitle.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\faConsole</font>
@@ -61,6 +65,7 @@
       <object>objects\oDamage</object>
       <object>objects\oMeteor</object>
       <object>objects\oChunk</object>
+      <object>objects\oInfinium</object>
     </objects>
     <objects name="Lasers">
       <object>objects\oArrow</object>
@@ -70,8 +75,10 @@
     <objects name="Title Screen">
       <object>objects\oOrb</object>
       <object>objects\oMeteorTitleScreen</object>
-      <object>objects\oFollow</object>
       <object>objects\oTitleText</object>
+      <object>objects\oTitleTrail</object>
+      <object>objects\oTitleMovement</object>
+      <object>objects\oArrowTitle</object>
     </objects>
   </objects>
   <rooms name="rooms">

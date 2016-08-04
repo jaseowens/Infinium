@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>oTitleMovement</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -57,7 +57,7 @@ view_vborder[0] = 720;
 view_xview[0]=x-(view_wview[0]/2)
 view_yview[0]=y-(view_hview[0]/2)
 
-y-=5;
+y-=2;
 </string>
           </argument>
         </arguments>

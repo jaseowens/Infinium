@@ -56,6 +56,12 @@ hp = 50;
           <argument>
             <kind>1</kind>
             <string>instance_create(x,y,oExplosion);
+
+perc = irandom_range(0,100);
+if(perc &lt;= 5){
+    instance_create(x,y,oInfinium);
+}
+
 instance_destroy();
 </string>
           </argument>
@@ -80,6 +86,10 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>if(hp&lt;=0){
+    perc = irandom_range(0,100);
+    if(perc &lt;= 5){
+        instance_create(x,y,oInfinium);
+    }
     instance_destroy();
 }
 
