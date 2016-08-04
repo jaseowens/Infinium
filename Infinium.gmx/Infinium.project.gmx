@@ -10,23 +10,31 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\sShip</sprite>
-    <sprite>sprites\sArrow</sprite>
-    <sprite>sprites\sArrow2</sprite>
-    <sprite>sprites\sPlanet</sprite>
-    <sprite>sprites\sDamage</sprite>
-    <sprite>sprites\sChunks</sprite>
-    <sprite>sprites\sMeteor</sprite>
-    <sprite>sprites\sBoostbar</sprite>
-    <sprite>sprites\sBB</sprite>
-    <sprite>sprites\sMouse</sprite>
     <sprite>sprites\sExplosion</sprite>
+    <sprites name="Lasers">
+      <sprite>sprites\sArrow2</sprite>
+      <sprite>sprites\sArrow</sprite>
+    </sprites>
+    <sprites name="UI">
+      <sprite>sprites\sMouse</sprite>
+      <sprite>sprites\sBB</sprite>
+    </sprites>
+    <sprites name="Space Objects">
+      <sprite>sprites\sDamage</sprite>
+      <sprite>sprites\sMeteor</sprite>
+      <sprite>sprites\sPlanet</sprite>
+      <sprite>sprites\sChunks</sprite>
+    </sprites>
+    <sprites name="Title Screen">
+      <sprite>sprites\sMeteorTitleScreen</sprite>
+      <sprite>sprites\sOrb</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgMain</background>
     <background>background\bgStar32</background>
     <background>background\bgStar16</background>
     <background>background\bgStar8</background>
-    <background>background\bgTitleScreen</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -41,18 +49,30 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\faConsole</font>
+    <font>fonts\faTitle</font>
+    <font>fonts\faSubtitles</font>
   </fonts>
   <objects name="objects">
     <object>objects\oShip</object>
-    <object>objects\oArrow</object>
-    <object>objects\oArrow2</object>
-    <object>objects\oPlanet</object>
-    <object>objects\oDamage</object>
-    <object>objects\oChunk</object>
     <object>objects\oController</object>
-    <object>objects\oMeteor</object>
     <object>objects\oMouse</object>
-    <object>objects\oExplosion</object>
+    <objects name="Space Objects">
+      <object>objects\oPlanet</object>
+      <object>objects\oDamage</object>
+      <object>objects\oMeteor</object>
+      <object>objects\oChunk</object>
+    </objects>
+    <objects name="Lasers">
+      <object>objects\oArrow</object>
+      <object>objects\oExplosion</object>
+      <object>objects\oArrow2</object>
+    </objects>
+    <objects name="Title Screen">
+      <object>objects\oOrb</object>
+      <object>objects\oMeteorTitleScreen</object>
+      <object>objects\oFollow</object>
+      <object>objects\oTitleText</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rTitle</room>
