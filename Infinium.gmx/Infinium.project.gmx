@@ -26,6 +26,7 @@
     <background>background\bgStar32</background>
     <background>background\bgStar16</background>
     <background>background\bgStar8</background>
+    <background>background\bgTitleScreen</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -54,6 +55,7 @@
     <object>objects\oExplosion</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rTitle</room>
     <room>rooms\rMain</room>
   </rooms>
   <help>
