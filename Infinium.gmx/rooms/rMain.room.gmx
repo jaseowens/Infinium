@@ -52,7 +52,7 @@
   </views>
   <instances>
     <instance objName="oShip" x="1056" y="768" name="inst_C7963677" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oMouse" x="1184" y="768" name="inst_047DA6B3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oMouse" x="448" y="352" name="inst_E730B2CE" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>

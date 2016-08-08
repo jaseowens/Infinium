@@ -31,6 +31,11 @@
       <sprite>sprites\sTitleTrail</sprite>
       <sprite>sprites\sArrowTitle</sprite>
     </sprites>
+    <sprite>sprites\sTemp</sprite>
+    <sprites name="Upgrade Screen">
+      <sprite>sprites\sPlusButton</sprite>
+      <sprite>sprites\sMinusButton</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgMain</background>
@@ -38,6 +43,7 @@
     <background>background\bgStar16</background>
     <background>background\bgStar8</background>
     <background>background\bgStar4</background>
+    <background>background\bgUpgradeScreen</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -79,11 +85,18 @@
       <object>objects\oTitleTrail</object>
       <object>objects\oTitleMovement</object>
       <object>objects\oArrowTitle</object>
+      <object>objects\oHoverable</object>
+    </objects>
+    <objects name="Upgrade Screen">
+      <object>objects\oShipDecor</object>
+      <object>objects\oPlusButton</object>
+      <object>objects\oMinusButton</object>
     </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rTitle</room>
     <room>rooms\rMain</room>
+    <room>rooms\rUpgrade</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

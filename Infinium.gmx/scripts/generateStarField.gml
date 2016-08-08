@@ -1,6 +1,8 @@
 ///generateStarField(startX,startY);
 startX = argument0;
 startY = argument1;
+
+
 for(xx = startX; xx < 20480; xx += 64){
     for(yy = startY; yy < 11520; yy += 64){
     
