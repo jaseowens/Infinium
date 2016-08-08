@@ -11,6 +11,9 @@ for(xx = startX; xx < 20480; xx += 64){
             if(perc2 <= 33){
                 tile_add(bgStar32,0,0,32,32,xx,yy,-10);
                 instance_create(xx,yy,oMeteor);
+                if(perc2 <= 10){
+                    instance_create(xx,yy,oPlanet);
+                }
             } else if(perc2 <= 66 && perc2 > 33){
                 tile_add(bgStar16,0,0,16,16,xx,yy,-11);
             } else{
