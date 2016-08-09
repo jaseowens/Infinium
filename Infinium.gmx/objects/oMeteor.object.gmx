@@ -25,13 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
-image_index = choose(0,1,2,3);
-di = irandom_range(0,359);
+            <string>///Initialization
 
+//Direction is set to a random range of 360 degrees.
+direction = irandom_range(0,359);
+
+//Speed is random of 1 -&gt; 5
 speed = choose(1,2,3,4,5);
-direction = di;
-
+//Max health
 hp = 50;
 </string>
           </argument>
@@ -55,13 +56,19 @@ hp = 50;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x,y,oExplosion);
+            <string>///Death Code
+//This is trigged by the ship crashing through the meteor also
+//Create Explosion at my position
+instance_create(x,y,oExplosion);
 
+//Perc is used to calculate chance of dropping infinium
 perc = irandom_range(0,100);
+//5% chance
 if(perc &lt;= 5){
+    //If 5% is hit, create infinium
     instance_create(x,y,oInfinium);
 }
-
+//Now destroy self
 instance_destroy();
 </string>
           </argument>
@@ -85,12 +92,12 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(hp&lt;=0){
-    perc = irandom_range(0,100);
-    if(perc &lt;= 5){
-        instance_create(x,y,oInfinium);
-    }
-    instance_destroy();
+            <string>///Triggers death event
+
+//If hp is below 0
+if(hp&lt;=0){
+    //Set alarm to 0, to trigger death code
+    alarm[0] = 1;
 }
 
 

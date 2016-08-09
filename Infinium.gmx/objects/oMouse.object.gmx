@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
+            <string>//Mouse isnt animated
+image_speed = 0;
+
 </string>
           </argument>
         </arguments>
@@ -48,40 +50,53 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = mouse_x;
+            <string>//Stay where mouse is
+x = mouse_x;
 y = mouse_y;
 
-
+//Change image of mouse based on hovering state, and what room located in. 
+//If not in the main room
 if(room!=rMain){
+    //Scale of image is set in half
     image_xscale = 0.5;
     image_yscale = 0.5;
+    //Using square with circle in center image
     image_index = 1;
     
+    //If hovering 
     if(place_meeting(x,y,oHoverable)){
-        image_angle+=10;    
+        //Rotate by 10 degrees each step
+        image_angle+=10;
+    //If not hovering    
     } else{
-        if(image_angle%360 != 0){
-            image_angle+=20;
-        }
+        //Set angle to 0
+        image_angle = 0;
     }
     
-    
+//If in the main room 
 } else if(room==rMain){
     
+    //If hovering
     if(place_meeting(x,y,oHoverable)){
+        //Using square with circle in center image
         image_index = 1;
-        image_angle+=10;    
+        //and rotate the image by 10 degrees each step
+        image_angle+=10;
+        //Alpha is = to 1 in the hovering state
+        image_alpha = 1;
+    //If not hovering    
     } else{
-        if(image_angle%360 != 0){
-            image_angle+=20;
-        } else{
-            image_index = 0;
-            image_xscale = 1;
-            image_yscale = 1;
-            image_angle = oShip.image_angle;
-            image_alpha = (distance_to_point(oShip.x,oShip.y)/100)/10;
-        }
-        
+        //Set image angle to 0
+        image_angle = 0;
+        //St image to direction arrows
+        image_index = 0;
+        //Set scale to 1
+        image_xscale = 1;
+        image_yscale = 1;
+        //Angle is dependent on ships angle
+        image_angle = oShip.image_angle;
+        //Alpha is dependent on distance to ship
+        image_alpha = (distance_to_point(oShip.x,oShip.y)/100)/10;
     }
     
 }

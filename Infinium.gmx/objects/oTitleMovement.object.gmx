@@ -25,10 +25,12 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>randomize();
+            <string>///Create
 
+randomize();
+//Begins movement
 alarm[0] = choose(10,15,20,25);
-
+//Count for movement
 count = 0;
 
 </string>
@@ -53,8 +55,11 @@ count = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>speed = choose(0.3,0.4,0.5);
+            <string>///Movement
 
+//Speed is random 
+speed = choose(0.3,0.4,0.5);
+//Direction is random between 90 -&gt; 270 degrees
 direction = choose(90,270);
 
 </string>
@@ -79,16 +84,25 @@ direction = choose(90,270);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(direction = 90 || direction = 270){
+            <string>///Direction set
+
+//Count ++ if moving up or down
+if(direction = 90 || direction = 270){
     count+=speed;
 }
 
+//After 10 steps, transiition
 if(count&gt;=10){
+    //If going up
     if(direction = 90){
+        //then go down
         direction = 270;
+    //if going down
     }else if(direction = 270){
+        //then go up
         direction = 90;
     }
+    //reset timer
     count = 0;
 }
 

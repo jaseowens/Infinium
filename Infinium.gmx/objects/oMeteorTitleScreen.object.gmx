@@ -25,8 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>///Create 
 event_inherited();
+//Centered on x-axis
 x=view_wview[0]/2;
 </string>
           </argument>

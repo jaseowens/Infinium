@@ -25,13 +25,21 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>pos1x = (view_wview[0]/2)-360;
+            <string>///Create
+
+//Set positions
+pos1x = (view_wview[0]/2)-360;
 pos1y = (view_hview[0]/2)+230;
+//No need for pos2x. as it is just pos1x
+//Pos2y is relative to pos1y
 pos2y = pos1y + 82;
 
+//Animation is very slow
 image_speed = 0.1;
+//Lower alpha for effect
 image_alpha = 0.75;
 
+//Set xandy
 x = pos1x;
 y = pos1y;
 
@@ -57,18 +65,32 @@ y = pos1y;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(keyboard_check_released(vk_down) || keyboard_check_released(vk_up)){
+            <string>///Step
+
+//Used for selection start or options
+//if Pressing Up or Down arrow
+if(keyboard_check_released(vk_down) || keyboard_check_released(vk_up)){
+    //If not inposition
     if(y != pos1y){
+        //set to position
         y = pos1y;
+    //if not in postion 2
     } else if(y != pos2y){
+        //set to position 2
         y = pos2y;
     }   
 }
 
+//Used for entering in command
+//If pressing space or enter
 if(keyboard_check_released(vk_space) || keyboard_check_released(vk_enter)){
+    //if at pos1 == Start
     if(y = pos1y){
+        //Go to Main room
         room_goto(rMain);
+    //If in second pos == Options
     } else if(y = pos2y){
+        //For now end, options room is not set up
         game_end();
     }   
 }

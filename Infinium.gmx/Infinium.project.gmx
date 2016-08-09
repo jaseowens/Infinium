@@ -12,8 +12,7 @@
     <sprite>sprites\sShip</sprite>
     <sprite>sprites\sExplosion</sprite>
     <sprites name="Lasers">
-      <sprite>sprites\sArrow2</sprite>
-      <sprite>sprites\sArrow</sprite>
+      <sprite>sprites\sLaser</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\sMouse</sprite>
@@ -49,13 +48,14 @@
   <scripts name="scripts">
     <script>scripts\playerMovement.gml</script>
     <script>scripts\smooth_rotate.gml</script>
-    <script>scripts\zoom.gml</script>
     <scripts name="Trail">
       <script>scripts\draw_trail.gml</script>
     </scripts>
-    <script>scripts\zoomCamera.gml</script>
-    <script>scripts\generateStarField.gml</script>
-    <script>scripts\generateStarFieldTitle.gml</script>
+    <scripts name="Generation">
+      <script>scripts\generateStarFieldTitle.gml</script>
+      <script>scripts\generateStarField.gml</script>
+    </scripts>
+    <script>scripts\UIMovement.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\faConsole</font>
@@ -64,19 +64,16 @@
   </fonts>
   <objects name="objects">
     <object>objects\oShip</object>
-    <object>objects\oController</object>
     <object>objects\oMouse</object>
     <objects name="Space Objects">
       <object>objects\oPlanet</object>
-      <object>objects\oDamage</object>
       <object>objects\oMeteor</object>
       <object>objects\oChunk</object>
       <object>objects\oInfinium</object>
     </objects>
     <objects name="Lasers">
-      <object>objects\oArrow</object>
+      <object>objects\oLaser</object>
       <object>objects\oExplosion</object>
-      <object>objects\oArrow2</object>
     </objects>
     <objects name="Title Screen">
       <object>objects\oOrb</object>

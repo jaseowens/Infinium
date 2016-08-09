@@ -25,14 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x=0;
+            <string>///Create
+//0,0
+x=0;
 y=0;
 
+//Text alpha
 titleAlpha = 1;
 subtitleAlpha = 0.75;
 
-titleFlicker = false;
-subtitleFlicker = false;
 
 </string>
           </argument>
@@ -104,23 +105,39 @@ if(subtitleFlicker){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>///GUI
+
+//Set GUI size
 display_set_gui_size(view_wview[0],view_hview[0]);
+
+//Center of screen
 xx=view_wview[0]/2;
 yy=view_hview[0]/2;
+//t = Electric Blue
 t = $A9A209;
+//Set color to t
 draw_set_colour(t);
 
+//Set alpha
 draw_set_alpha(titleAlpha);
+//Set font
 draw_set_font(faTitle);
+//Set halign
 draw_set_halign(fa_center);
+//Draw Title, To replace
 draw_text(xx+45,yy+45,"infinium");
 
+//Subtitle
 draw_set_alpha(subtitleAlpha);
 draw_set_halign(fa_left);
 draw_set_font(faSubtitles);
+
+//Draw Subtitles
+//Start
 draw_text(xx-340,yy+200,"start");
+//Options
 draw_text(xx-340,yy+274,"options");
+//Reset alpha
 draw_set_alpha(1);
 
 </string>

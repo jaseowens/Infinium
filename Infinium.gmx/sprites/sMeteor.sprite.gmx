@@ -8,9 +8,9 @@
   <sepmasks>-1</sepmasks>
   <bboxmode>0</bboxmode>
   <bbox_left>0</bbox_left>
-  <bbox_right>119</bbox_right>
+  <bbox_right>100</bbox_right>
   <bbox_top>0</bbox_top>
-  <bbox_bottom>97</bbox_bottom>
+  <bbox_bottom>83</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -21,8 +21,5 @@
   <height>84</height>
   <frames>
     <frame index="0">images\sMeteor_0.png</frame>
-    <frame index="1">images\sMeteor_1.png</frame>
-    <frame index="2">images\sMeteor_2.png</frame>
-    <frame index="3">images\sMeteor_3.png</frame>
   </frames>
 </sprite>

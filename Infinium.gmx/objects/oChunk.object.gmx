@@ -26,8 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Main
+//reduce alpha of image every step
 image_alpha -= 0.05;
+//if image is completely transparent
 if(image_alpha &lt;= 0){
+    //Destroy self
     instance_destroy();
 }
 </string>

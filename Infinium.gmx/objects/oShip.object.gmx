@@ -27,24 +27,33 @@
             <kind>1</kind>
             <string>///Vars
 
-
+//Center of screen
 x = room_width/2;
 y = room_height/2;
 
-
+//Horizontal speed
 hsp = 0;
+//Vertical speed
 vsp = 0;
+//Both of the above are used to manually calculate the speed and are then added to GM's inbuilt variables to give the ship speed. 
+//Thrust is used to gradually increase the amount of speed being given to the ship. 
 thrust = 0;
 
 //Shooting
+//Max and min amount of variation
 variationAmount = 8;
+//Used to actually set the amount of variation
 variation = 0;
 
-canShootTimer = 0;
+//Timer is set to false initially, althought there is only 1 step inbetween each shot.
+//To the player there is no delay between spawning and shooting. 
 canShoot = false;
+//Used to check, above is actual below is the check i.e. (canShootTimer &gt;= fireDelayTimer)
+canShootTimer = 0;
 fireDelayTime = 1;
 
-//instance_create(0,0,oController);
+
+
 
 </string>
           </argument>
@@ -66,7 +75,7 @@ fireDelayTime = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Zoom
+            <string>///Zoom Vars
 
 baseWidth = view_wview[0];
 baseHeight = view_hview[0];
@@ -78,37 +87,6 @@ zoomFactor = 1;
 maxZoom = 80;
 minZoom = 180;
 
-/*
-//max_zoom_scale is the maximum zoom that the camera is capable of (zoomed out)
-max_zoom_scale = 1.0;
- 
-//min_zoom_scale is the minimum zoom that the camera is capable of (zoomed in)
-min_zoom_scale = 0.04;
- 
-//zoom_scale_adjust is the amount the target zoom scale is adjusted
-//  by when the mouse wheel is moved.
-zoom_scale_adjust = 0.05;
- 
-//zoom_speed is the speed at which the current zoom scale will move towards
-//  the target zoom scale.
-zoom_speed = 0.1;
- 
-//current_zoom_scale is zoom scale that will be actively used by the camera
-current_zoom_scale = 1;
- 
-//target_zoom_scale is the zoom scale the camera will move towards.
-target_zoom_scale = current_zoom_scale;
- 
-//Scroll Speed The number of pixels per step to adjust the camera view
-scroll_speed = 100;
- 
-//Multiply locational coordinates for star systems by the relative scale in order to
-//get stellaris galactic coordinates
-relative_scale = 500 / 25000;
- 
-//Multiply locational coordinates for star systems by the relative scale inverse to
-//get Map Editor galactic coordinates.
-relative_scale_inverse = 25000 / 500;
 </string>
           </argument>
         </arguments>
@@ -132,30 +110,52 @@ relative_scale_inverse = 25000 / 500;
           <argument>
             <kind>1</kind>
             <string>///Movement
-image_angle = smooth_rotate(image_angle, point_direction(x,y,mouse_x,mouse_y), 14);
 
+//use script found online to smoothly rotate the ship towards the mouse, at the speed set at the end.
+image_angle = smooth_rotate(image_angle, point_direction(x,y,mouse_x,mouse_y), 14);
+//Direction is = to the image angle
 dir = image_angle;
 
+//If pressing space -&gt; Move
 if(keyboard_check(vk_space)){
-    
+    //Sets a max amount to the hsp and vsp, with 0.8 =&gt; ~25.
     hsp *= 0.80;
     vsp *= 0.80;
-
+    
+    //Thrust amount is based on distance to mouse, higher the /x is the slower the ships gets up to max speed. 
     thrust += distance_to_point(mouse_x,mouse_y)/10000;
+    //Thrust is also capped at a set amount of 5. 
     if(thrust &gt; 5){
         thrust = 5;
     }
     
+    //Hsp and Vsp are set to += the lengthdir of thrust and dir. 
     hsp += lengthdir_x(thrust,dir);
     vsp += lengthdir_y(thrust,dir);
     
 } else{
+    //If not thrusting, thrust will eventually be set to zero.
     thrust *= 0.95;
+    /**
+
+        This is where the current issue with controls is.
+        
+        The ship can be going in the same direction as before, but because the user has let go of the spacebar,
+        thrust is still decreasing. 
+        
+        So if the payer hits space going in the same direction, they might actually slow themselves down. Depending 
+        on the amount of time taken.     
+    
+    **/
+    
+    
 }
 
+//Put the manually variables to use, using the built in variables. 
 hspeed = hsp;
 vspeed = vsp;
 
+//Temporary key to set speed to 0.
 if(keyboard_check(ord('S'))){
     speed = 0;
 }
@@ -190,22 +190,29 @@ tile_layer_shift(-10,hsp*0.06125,vsp*0.06125);
             <kind>1</kind>
             <string>///Zoom
 
+//Center of screen(view) is set and stored in this vars.
 var viewCenterX, viewCenterY;
 viewCenterX = view_xview[0] + view_wview[0] / 2;
 viewCenterY = view_yview[0] + view_hview[0] / 2;
 
+//Change based on what direction the user is scrolling
 switch(zoomType){
+    //Scrolling up, zooms "in"
     case "in":
+        //Maths, to get the amount of zoom per step.
         zoomLevel = min(zoomLevel + (zoomFactor * zoomPerStep), minZoom);
-    break;
+        break;
+    //Scrolling down, zooms "out".
     case "out":
+        //Maths, to get the amount of zoom per step.
         zoomLevel = max(zoomLevel - (zoomFactor * zoomPerStep), maxZoom);
-    break;
+        break;
 }
 
+//Actually seting the zoom to be what was calculated above.
 view_wview[0] = baseWidth *(zoomLevel / 100);
 view_hview[0] = baseHeight *(zoomLevel / 100);
-
+//Recentering screen
 view_xview[0] = viewCenterX - view_wview[0] / 2;
 view_yview[0] = viewCenterY - view_hview[0] / 2;
 
@@ -218,13 +225,8 @@ if(zoomPerStep &gt; 0){
 //Have to manually set the view or the player is stuck in the room.
 view_hborder[0] = 1280;
 view_vborder[0] = 720;
-//view_hspeed[0] = -1;
-//view_vspeed[0] = -1;
-view_xview[0]=x-(view_wview[0]/2)
-view_yview[0]=y-(view_hview[0]/2)
-
-/*
-zoom();
+view_xview[0]=x-(view_wview[0]/2);
+view_yview[0]=y-(view_hview[0]/2);
 </string>
           </argument>
         </arguments>
@@ -246,48 +248,35 @@ zoom();
           <argument>
             <kind>1</kind>
             <string>///Fire (Primary)
+
+//If cant shoow
 if(!canShoot){
+    //and timer is still not where it needs to be
     if(canShootTimer &lt;= fireDelayTime){
+        //increase the timer by 1.
         canShootTimer++;
     } else{
+        //Otherwise, the player can shoot. 
         canShoot = true;
     }
 }
 
+//If player hits left mouse button, and they can fire
 if(mouse_check_button(mb_left) &amp;&amp; canShoot){
-    arr = instance_create(x,y,oArrow);
+    //Create a bullet at this position
+    arr = instance_create(x,y,oLaser);
+    //Set variation to be inbetween the max and min of set variationAmount
     variation = random_range(-variationAmount,variationAmount);
+    //Direction is equal to that of the mouse, +- the variation set above
     arr.direction = point_direction(x,y,mouse_x,mouse_y) + variation;
+    //Image angle is equal to direction
     arr.image_angle = arr.direction;
+    //Speed is equal to ships speed + 15
     arr.speed = speed+15;
+    //Set timer for user to shoot back to 0
     canShootTimer = 0;
+    //And set canShoot to false
     canShoot = false;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Fire (Secondary)
-if(mouse_check_button_released(mb_right)){
-    arr = instance_create(x,y,oArrow2);
-    arr.direction = point_direction(x,y,mouse_x,mouse_y);
-    arr.speed = speed+5;
 }
 </string>
           </argument>
@@ -311,6 +300,7 @@ if(mouse_check_button_released(mb_right)){
             <kind>1</kind>
             <string>///Upgrade Screen
 
+//Key to go to the upgrade screen. 
 if(keyboard_check_released(ord('E'))){
     room_goto(rUpgrade);
 }   
@@ -337,17 +327,20 @@ if(keyboard_check_released(ord('E'))){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>xx = x;
-yy = y;
+            <string>///Collision Event
 
-
+//With the meteor
 with(other){
+    //Do this 3 times
     repeat(3){
+        //Create object of chunk, with name of C.
         c = instance_create(x,y,oChunk);
+        //Direction of chunk is set to random range.
         c.direction = random_range(oShip.direction-35,oShip.direction+35);
+        //Speed is inbetween of the below random range.
         c.speed = random_range(3,9);
     }
-    
+    //Meteors alarm event is set to 15.
     alarm[0] = 15;
     
 }
@@ -373,7 +366,11 @@ with(other){
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>zoomType = "in";
+            <string>//Zoom Control
+
+//Mouse Wheel down = "in"
+zoomType = "in";
+//ZPS
 zoomPerStep = 2.5;
 </string>
           </argument>
@@ -397,7 +394,11 @@ zoomPerStep = 2.5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>zoomType = "out";
+            <string>///Zoom Control
+
+//Mouse wheel up = out
+zoomType = "out";
+//ZPS
 zoomPerStep = 2.5;
 </string>
           </argument>
@@ -421,23 +422,38 @@ zoomPerStep = 2.5;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>///GUI
+
+//Set GUI size
 display_set_gui_size(1280,720);
 
+//Font is set to console
 draw_set_font(faConsole);
+//Color of text is white
 draw_set_colour(c_white);
+//Halighn is set to left
 draw_set_halign(fa_left);
 
-draw_text(5,2,"Delta: " + string(fps_real));
-draw_text(5,16,"FPS: " + string(fps));
-draw_text(5,30,"Speed: " + string(speed));
+//Text
+//Delta, time between steps
+draw_text(5 ,  2 , "Delta: "        + string(fps_real));
+//FPS
+draw_text(5 , 16 , "FPS: "          + string(fps));
+//Ships speed
+draw_text(5 , 30 , "Speed: "        + string(speed));
 
+//B = Electric Blue
 b = $A9A209;
+//G = Electric Green
 g = $54A909;
 
+//Set alpha to 0.75 for effect
 draw_set_alpha(0.75);
+//Draw the boostbar spreite at set location
 draw_sprite(sBB,0,10,710);
+//Draw hbar with total of speed.
 draw_healthbar(13,710,341,660,speed*4,c_white,g,b,0,false,false);
+//Reset alpha
 draw_set_alpha(1);
 
 
@@ -463,9 +479,16 @@ draw_set_alpha(1);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_alpha(0.75);
+            <string>///Draw
+
+//Set alpha to 0.75 for effect
+draw_set_alpha(0.75);
+//Actually draw the trail, with script
 draw_trail(32,4,c_gray,-1,true,1);
+//Reset alpha to 1.
 draw_set_alpha(1);
+
+//Draw the ship above the trail
 draw_self();
 
 </string>

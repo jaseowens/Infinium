@@ -25,7 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_create(x,y,oTitleText);
+            <string>///Create
+//Title text created here
+instance_create(x,y,oTitleText);
+//Generate starfield
 generateStarFieldTitle();
 
 
@@ -53,8 +56,10 @@ generateStarFieldTitle();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>///Step
+//direction is equal to the direction of the title trail direction
 direction = oTitleTrail.direction;
+//Speed is equal to the title trail speed
 speed = oTitleTrail.speed;
 
 
@@ -80,7 +85,8 @@ speed = oTitleTrail.speed;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>room_restart();
+            <string>///Restart room
+room_restart();
 </string>
           </argument>
         </arguments>
