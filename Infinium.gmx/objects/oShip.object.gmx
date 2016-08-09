@@ -423,6 +423,15 @@ zoomPerStep = 2.5;
           <argument>
             <kind>1</kind>
             <string>///GUI
+//global.length is set in the mouse object.
+//Returns length to center of screen
+l = global.length/500;
+//pointdirection gives the angle from mouse and center of screen
+d = point_direction(view_wview[0]/2,view_hview[0]/2,mouse_x,mouse_y);
+
+//Used to add/subtract from gui's base position
+xChange = lengthdir_x(l,d);
+yChange = lengthdir_y(l,d);
 
 //Set GUI size
 display_set_gui_size(1280,720);
@@ -435,12 +444,9 @@ draw_set_colour(c_white);
 draw_set_halign(fa_left);
 
 //Text
-//Delta, time between steps
-draw_text(5 ,  2 , "Delta: "        + string(fps_real));
-//FPS
-draw_text(5 , 16 , "FPS: "          + string(fps));
-//Ships speed
-draw_text(5 , 30 , "Speed: "        + string(speed));
+draw_text(5 + xChange,  2 + yChange, "Delta: "        + string(fps_real));
+draw_text(5 + xChange, 16 + yChange, "FPS: "          + string(fps));
+draw_text(5 + xChange, 30 + yChange, "Speed: "        + string(speed));
 
 //B = Electric Blue
 b = $A9A209;
@@ -450,9 +456,9 @@ g = $54A909;
 //Set alpha to 0.75 for effect
 draw_set_alpha(0.75);
 //Draw the boostbar spreite at set location
-draw_sprite(sBB,0,10,710);
+draw_sprite(sBB,0,10 + xChange,710 + yChange);
 //Draw hbar with total of speed.
-draw_healthbar(13,710,341,660,speed*4,c_white,g,b,0,false,false);
+draw_healthbar(13 + xChange,710 + yChange,341 + xChange,660 + yChange,speed*4,c_white,g,b,0,false,false);
 //Reset alpha
 draw_set_alpha(1);
 
