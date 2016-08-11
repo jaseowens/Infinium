@@ -13,8 +13,8 @@
   <code>global.timer = 0;
 z = 59999
 generateStarField(-z/2,-z/2,z,z,64,10);
-generateSpaceObjects(-z/2,-z/2,z,z,64,2.5,oMeteor);
-generateSpaceObjects(-z/2,-z/2,z,49999,64,2,oPlanet);</code>
+generateSpaceObjects(-z/2,-z/2,z,z,64,2,oMeteor);
+generateSpaceObjects(-z/2,-z/2,z,z,64,1,oPlanet);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

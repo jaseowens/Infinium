@@ -419,6 +419,14 @@ if(keyboard_check_released(ord('E'))){
             <string>///Optimization
 instance_activate_all();
 instance_deactivate_region(view_xview[0] - 64, view_yview - 64, view_wview[0] + 128, view_hview + 128, false, false);
+
+if(zoomLevel &gt;= 500){
+    meteorDeactivate(true);
+} else if(zoomLevel &lt; 500){
+    meteorDeactivate(false);
+}
+
+
 </string>
           </argument>
         </arguments>
