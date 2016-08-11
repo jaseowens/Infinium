@@ -417,8 +417,8 @@ if(keyboard_check_released(ord('E'))){
           <argument>
             <kind>1</kind>
             <string>///Optimization
-instance_deactivate_region(view_xview[0],view_yview[0], view_wview[0], view_hview[0], false, true);
-instance_activate_region(view_xview[0], view_yview[0], view_wview[0], view_hview[0], false);
+instance_activate_all();
+instance_deactivate_region(view_xview[0] - 64, view_yview - 64, view_wview[0] + 128, view_hview + 128, false, false);
 </string>
           </argument>
         </arguments>
@@ -523,7 +523,8 @@ draw_text(5 + xChange, 30 + yChange, "Speed: "        + string(speed));
 draw_text(5 + xChange, 44 + yChange, "xChange: "      + string(xChange));
 draw_text(5 + xChange, 60 + yChange, "yChange: "      + string(yChange));
 draw_text(5 + xChange, 74 + yChange, "Stage: "        + string(stage));
-draw_text(5 + xChange, 88 + yChange, "GenTime: "      + string(global.timer/60) + " Seconds");
+draw_text(5 + xChange, 88 + yChange, "InstCount: "    + string(instance_count));
+
 
 //B = Electric Blue
 b = $A9A209;
@@ -584,9 +585,10 @@ draw_set_alpha(1);
 
 
 //Draw Line to newarest planet
+if(instance_exists(oPlanet)){
 p = instance_nearest(x,y,oPlanet);
 draw_line(x,y,p.x,p.y,);
-
+}
 //Draw the ship above the trail
 draw_self();
 

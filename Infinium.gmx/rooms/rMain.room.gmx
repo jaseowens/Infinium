@@ -11,9 +11,10 @@
   <colour>2763306</colour>
   <showcolour>-1</showcolour>
   <code>global.timer = 0;
-generateStarField(-49999,-49999,99999,99999,64,10);
-generateSpaceObjects(-2560,-1280,5120,2560,64,5,oMeteor);
-generateSpaceObjects(-2560,-1280,5120,2560,64,2,oPlanet);</code>
+z = 59999
+generateStarField(-z/2,-z/2,z,z,64,10);
+generateSpaceObjects(-z/2,-z/2,z,z,64,2.5,oMeteor);
+generateSpaceObjects(-z/2,-z/2,z,49999,64,2,oPlanet);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>
