@@ -6,11 +6,14 @@
   <vsnap>32</vsnap>
   <hsnap>32</hsnap>
   <isometric>0</isometric>
-  <speed>30</speed>
+  <speed>60</speed>
   <persistent>0</persistent>
   <colour>2763306</colour>
   <showcolour>-1</showcolour>
-  <code>generateStarField(0,0);</code>
+  <code>global.timer = 0;
+generateStarField(-49999,-49999,99999,99999,64,10);
+generateSpaceObjects(-2560,-1280,5120,2560,64,5,oMeteor);
+generateSpaceObjects(-2560,-1280,5120,2560,64,2,oPlanet);</code>
   <enableViews>-1</enableViews>
   <clearViewBackground>-1</clearViewBackground>
   <clearDisplayBuffer>-1</clearDisplayBuffer>

@@ -54,8 +54,10 @@
     <scripts name="Generation">
       <script>scripts\generateStarFieldTitle.gml</script>
       <script>scripts\generateStarField.gml</script>
+      <script>scripts\generateSpaceObjects.gml</script>
     </scripts>
-    <script>scripts\UIMovement.gml</script>
+    <script>scripts\warpSpeed.gml</script>
+    <script>scripts\gotoPlanet.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\faConsole</font>
@@ -89,10 +91,12 @@
       <object>objects\oPlusButton</object>
       <object>objects\oMinusButton</object>
     </objects>
+    <object>objects\oController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rTitle</room>
     <room>rooms\rMain</room>
+    <room>rooms\rPlanet</room>
     <room>rooms\rUpgrade</room>
   </rooms>
   <help>

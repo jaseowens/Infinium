@@ -3,7 +3,7 @@
   <spriteName>sShip</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-50</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,6 +26,12 @@
           <argument>
             <kind>1</kind>
             <string>///Vars
+
+//Create
+
+
+//User Control
+userControl = true;
 
 //Center of screen
 x = room_width/2;
@@ -51,6 +57,19 @@ canShoot = false;
 //Used to check, above is actual below is the check i.e. (canShootTimer &gt;= fireDelayTimer)
 canShootTimer = 0;
 fireDelayTime = 1;
+
+//Warp 
+//Initial count, have to maintain speed for x amount of time before warp
+warpSpeedCount = 0;
+//Player is given a warning for how long until warp goes 
+warpSpeedCountdown = 0;
+//Draw warning or no
+drawCountdown = false;
+//Debugging
+stage = 0;
+//Seconds for countdown
+countdown = 5;
+
 
 
 
@@ -85,7 +104,7 @@ zoomPerStep = 0;
 zoomChange = 0.05;
 zoomFactor = 1;
 maxZoom = 80;
-minZoom = 180;
+minZoom = 720;
 
 </string>
           </argument>
@@ -110,6 +129,9 @@ minZoom = 180;
           <argument>
             <kind>1</kind>
             <string>///Movement
+
+if(userControl == true){
+
 
 //use script found online to smoothly rotate the ship towards the mouse, at the speed set at the end.
 image_angle = smooth_rotate(image_angle, point_direction(x,y,mouse_x,mouse_y), 14);
@@ -155,6 +177,32 @@ if(keyboard_check(vk_space)){
 hspeed = hsp;
 vspeed = vsp;
 
+if(speed == 25 &amp;&amp; keyboard_check(vk_space)){
+    stage=1;
+    if(warpSpeedCount&lt;=150){
+        warpSpeedCount++;
+    } else{
+        stage=2;
+        if(warpSpeedCountdown&lt;=150){
+            stage = 2.5;
+            warpSpeedCountdown++;
+            if(warpSpeedCountdown%30 = 0){
+                countdown--;
+            }
+            drawCountdown = true;
+        }else if(warpSpeedCountdown &gt;= 160){
+            stage=3;
+            warpSpeed();
+        }
+    }
+} else{
+stage=0;
+    warpSpeedCount = 0;
+    warpSpeedCountdown = 0;
+    drawCountdown = false;
+}
+
+
 //Temporary key to set speed to 0.
 if(keyboard_check(ord('S'))){
     speed = 0;
@@ -165,7 +213,14 @@ tile_layer_shift(-12,hsp*0.25,vsp*0.25);
 tile_layer_shift(-11,hsp*0.125,vsp*0.125);
 tile_layer_shift(-10,hsp*0.06125,vsp*0.06125);
 
-
+} else{
+    if(distance_to_point(desX,desY) &lt; 25){
+        move_towards_point(desX,desY,2.5);
+    } else{
+        speed = 0;
+        room_goto(rPlanet);
+    }
+}
 
 
 </string>
@@ -189,7 +244,7 @@ tile_layer_shift(-10,hsp*0.06125,vsp*0.06125);
           <argument>
             <kind>1</kind>
             <string>///Zoom
-
+if(userControl == true){
 //Center of screen(view) is set and stored in this vars.
 var viewCenterX, viewCenterY;
 viewCenterX = view_xview[0] + view_wview[0] / 2;
@@ -227,6 +282,22 @@ view_hborder[0] = 1280;
 view_vborder[0] = 720;
 view_xview[0]=x-(view_wview[0]/2);
 view_yview[0]=y-(view_hview[0]/2);
+
+
+if(mouse_wheel_up()){
+    //Mouse wheel up = out
+    zoomType = "out";
+    //ZPS
+    zoomPerStep = 2.5;
+}
+
+if(mouse_wheel_down()){
+    //Mouse Wheel down = "in"
+    zoomType = "in";
+    //ZPS
+    zoomPerStep = 2.5;
+}
+}
 </string>
           </argument>
         </arguments>
@@ -247,8 +318,11 @@ view_yview[0]=y-(view_hview[0]/2);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Fire (Primary)
+            <string>///Left Click
 
+//Fire
+
+if(userControl == true){
 //If cant shoow
 if(!canShoot){
     //and timer is still not where it needs to be
@@ -262,7 +336,7 @@ if(!canShoot){
 }
 
 //If player hits left mouse button, and they can fire
-if(mouse_check_button(mb_left) &amp;&amp; canShoot){
+if(mouse_check_button(mb_left) &amp;&amp; canShoot &amp;&amp; !place_meeting(mouse_x,mouse_y,oHoverable)){
     //Create a bullet at this position
     arr = instance_create(x,y,oLaser);
     //Set variation to be inbetween the max and min of set variationAmount
@@ -277,6 +351,21 @@ if(mouse_check_button(mb_left) &amp;&amp; canShoot){
     canShootTimer = 0;
     //And set canShoot to false
     canShoot = false;
+}
+
+//Select Planet
+
+if(mouse_check_button(mb_left) &amp;&amp; place_meeting(mouse_x,mouse_y,oHoverable)){
+    p = instance_place(mouse_x,mouse_y,oPlanet);
+    gotoPlanet(instance_place(mouse_x,mouse_y,oPlanet));
+    oShip.userControl = false; 
+    with(oShip){
+        desX = p.x;
+        desY = p.y;
+    }
+}
+
+
 }
 </string>
           </argument>
@@ -299,12 +388,37 @@ if(mouse_check_button(mb_left) &amp;&amp; canShoot){
           <argument>
             <kind>1</kind>
             <string>///Upgrade Screen
-
+if(userControl == true){
 //Key to go to the upgrade screen. 
 if(keyboard_check_released(ord('E'))){
     room_goto(rUpgrade);
 }   
+}
 
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Optimization
+instance_deactivate_region(view_xview[0],view_yview[0], view_wview[0], view_hview[0], false, true);
+instance_activate_region(view_xview[0], view_yview[0], view_wview[0], view_hview[0], false);
 </string>
           </argument>
         </arguments>
@@ -349,62 +463,6 @@ with(other){
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="61">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>//Zoom Control
-
-//Mouse Wheel down = "in"
-zoomType = "in";
-//ZPS
-zoomPerStep = 2.5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="60">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Zoom Control
-
-//Mouse wheel up = out
-zoomType = "out";
-//ZPS
-zoomPerStep = 2.5;
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
@@ -425,13 +483,28 @@ zoomPerStep = 2.5;
             <string>///GUI
 //global.length is set in the mouse object.
 //Returns length to center of screen
-l = global.length/500;
+l = global.length/250;
 //pointdirection gives the angle from mouse and center of screen
 d = point_direction(view_wview[0]/2,view_hview[0]/2,mouse_x,mouse_y);
+
+
+
+
 
 //Used to add/subtract from gui's base position
 xChange = lengthdir_x(l,d);
 yChange = lengthdir_y(l,d);
+
+       if(mouse_x &gt;= view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &lt;= view_yview[0]+view_hview[0]/2){
+            yChange *= -1;
+} else if(mouse_x &lt; view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &lt;= view_yview[0]+view_hview[0]/2){
+            xChange *= -1;
+            yChange *= -1;
+} else if(mouse_x &gt;= view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &gt; view_yview[0]+view_hview[0]/2){
+            //nothing
+} else if(mouse_x &lt; view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &gt; view_yview[0]+view_hview[0]/2){
+            xChange *= -1;
+}
 
 //Set GUI size
 display_set_gui_size(1280,720);
@@ -447,6 +520,10 @@ draw_set_halign(fa_left);
 draw_text(5 + xChange,  2 + yChange, "Delta: "        + string(fps_real));
 draw_text(5 + xChange, 16 + yChange, "FPS: "          + string(fps));
 draw_text(5 + xChange, 30 + yChange, "Speed: "        + string(speed));
+draw_text(5 + xChange, 44 + yChange, "xChange: "      + string(xChange));
+draw_text(5 + xChange, 60 + yChange, "yChange: "      + string(yChange));
+draw_text(5 + xChange, 74 + yChange, "Stage: "        + string(stage));
+draw_text(5 + xChange, 88 + yChange, "GenTime: "      + string(global.timer/60) + " Seconds");
 
 //B = Electric Blue
 b = $A9A209;
@@ -461,6 +538,17 @@ draw_sprite(sBB,0,10 + xChange,710 + yChange);
 draw_healthbar(13 + xChange,710 + yChange,341 + xChange,660 + yChange,speed*4,c_white,g,b,0,false,false);
 //Reset alpha
 draw_set_alpha(1);
+
+
+
+if(drawCountdown = true){
+    draw_set_halign(fa_center);
+    draw_text(display_get_gui_width()/2,(display_get_gui_height()/2) - 75, "Countdown...");
+    draw_text(display_get_gui_width()/2,(display_get_gui_height()/2) - 60, countdown);
+}
+
+
+
 
 
 </string>
@@ -493,6 +581,11 @@ draw_set_alpha(0.75);
 draw_trail(32,4,c_gray,-1,true,1);
 //Reset alpha to 1.
 draw_set_alpha(1);
+
+
+//Draw Line to newarest planet
+p = instance_nearest(x,y,oPlanet);
+draw_line(x,y,p.x,p.y,);
 
 //Draw the ship above the trail
 draw_self();
