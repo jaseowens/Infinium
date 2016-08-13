@@ -421,9 +421,10 @@ instance_activate_all();
 instance_deactivate_region(view_xview[0] - 64, view_yview - 64, view_wview[0] + 128, view_hview + 128, false, false);
 
 if(zoomLevel &gt;= 500){
-    meteorDeactivate(true);
+    show_debug_message("false");
+    showMeteor(false);
 } else if(zoomLevel &lt; 500){
-    meteorDeactivate(false);
+    showMeteor(true);
 }
 
 
@@ -532,7 +533,7 @@ draw_text(5 + xChange, 44 + yChange, "xChange: "      + string(xChange));
 draw_text(5 + xChange, 60 + yChange, "yChange: "      + string(yChange));
 draw_text(5 + xChange, 74 + yChange, "Stage: "        + string(stage));
 draw_text(5 + xChange, 88 + yChange, "InstCount: "    + string(instance_count));
-
+draw_text(5 + xChange, 102+ yChange, "ZoomLevel: "    + string(zoomLevel));
 
 //B = Electric Blue
 b = $A9A209;

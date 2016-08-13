@@ -59,7 +59,7 @@
     <script>scripts\warpSpeed.gml</script>
     <script>scripts\gotoPlanet.gml</script>
     <scripts name="Optimization">
-      <script>scripts\meteorDeactivate.gml</script>
+      <script>scripts\showMeteor.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
