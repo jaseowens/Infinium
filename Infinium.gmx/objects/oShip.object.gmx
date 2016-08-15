@@ -106,6 +106,8 @@ zoomFactor = 1;
 maxZoom = 80;
 minZoom = 2000;
 
+s = 1;
+
 </string>
           </argument>
         </arguments>
@@ -297,6 +299,21 @@ if(mouse_wheel_down()){
     //ZPS
     zoomPerStep = 2.5;
 }
+
+if(keyboard_check(vk_lalt)){
+    //Mouse Wheel down = "in"
+    s+=0.1;
+    zoomLevel += s;
+} else if(keyboard_check(vk_ralt)){
+    //Mouse Wheel down = "in"
+    s+=0.1;
+    if(zoomLevel &gt; 80){
+        zoomLevel -= s;
+    }
+} else{
+    s = 1;
+}
+
 }
 </string>
           </argument>
@@ -612,6 +629,7 @@ draw_set_alpha(1);
 //Draw Line to newarest planet
 if(instance_exists(oPlanet)){
 p = instance_nearest(x,y,oPlanet);
+draw_set_color(p.image_blend);
 draw_line(x,y,p.x,p.y,);
 }
 //Draw the ship above the trail

@@ -26,8 +26,22 @@
           <argument>
             <kind>1</kind>
             <string>a = 0;
-xx = random_range(-150,150);
-instance_create(x+xx,y+xx,oPlanet);
+
+randomize();
+
+amountOfPlanets = irandom_range(2,4);
+
+//Planet sprite width
+additionalCoordinate = 300;
+
+repeat(amountOfPlanets){
+    xx = random_range(-150,150);
+    yy = random_range(-150,150);
+    instance_create((x+xx)+additionalCoordinate,(y+yy)+additionalCoordinate,oPlanet);
+    additionalCoordinate += additionalCoordinate;
+}
+
+
 </string>
           </argument>
         </arguments>

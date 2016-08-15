@@ -28,7 +28,9 @@
             <string>///Init
 randomize();
 image_speed = 0;
-image_index = choose(0,1,2,3);
+
+image_blend = make_colour_rgb(random(255),random(255),random(255));
+
 //Collided
 col = false;
 </string>
