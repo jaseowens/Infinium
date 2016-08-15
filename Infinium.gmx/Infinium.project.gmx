@@ -23,6 +23,8 @@
       <sprite>sprites\sMeteor</sprite>
       <sprite>sprites\sPlanet</sprite>
       <sprite>sprites\sChunks</sprite>
+      <sprite>sprites\sGalaxy</sprite>
+      <sprite>sprites\sBlackHole</sprite>
     </sprites>
     <sprites name="Title Screen">
       <sprite>sprites\sMeteorTitleScreen</sprite>
@@ -48,18 +50,22 @@
   <scripts name="scripts">
     <script>scripts\playerMovement.gml</script>
     <script>scripts\smooth_rotate.gml</script>
+    <script>scripts\gotoPlanet.gml</script>
+    <script>scripts\warpSpeed.gml</script>
+    <script>scripts\instance_nearest_notme.gml</script>
     <scripts name="Trail">
       <script>scripts\draw_trail.gml</script>
+    </scripts>
+    <scripts name="Optimization">
+      <script>scripts\showMeteor.gml</script>
+      <script>scripts\showGalaxy.gml</script>
+      <script>scripts\showStars.gml</script>
     </scripts>
     <scripts name="Generation">
       <script>scripts\generateStarFieldTitle.gml</script>
       <script>scripts\generateStarField.gml</script>
       <script>scripts\generateSpaceObjects.gml</script>
-    </scripts>
-    <script>scripts\warpSpeed.gml</script>
-    <script>scripts\gotoPlanet.gml</script>
-    <scripts name="Optimization">
-      <script>scripts\showMeteor.gml</script>
+      <script>scripts\newGeneration.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -75,6 +81,8 @@
       <object>objects\oMeteor</object>
       <object>objects\oChunk</object>
       <object>objects\oInfinium</object>
+      <object>objects\oGalaxy</object>
+      <object>objects\oBlackHole</object>
     </objects>
     <objects name="Lasers">
       <object>objects\oLaser</object>
@@ -97,8 +105,8 @@
     <object>objects\oController</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rTitle</room>
     <room>rooms\rMain</room>
+    <room>rooms\rTitle</room>
     <room>rooms\rPlanet</room>
     <room>rooms\rUpgrade</room>
   </rooms>

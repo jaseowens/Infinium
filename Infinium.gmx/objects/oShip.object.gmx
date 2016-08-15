@@ -104,7 +104,7 @@ zoomPerStep = 0;
 zoomChange = 0.05;
 zoomFactor = 1;
 maxZoom = 80;
-minZoom = 720;
+minZoom = 2000;
 
 </string>
           </argument>
@@ -421,11 +421,27 @@ instance_activate_all();
 instance_deactivate_region(view_xview[0] - 64, view_yview - 64, view_wview[0] + 128, view_hview + 128, false, false);
 
 if(zoomLevel &gt;= 500){
-    show_debug_message("false");
     showMeteor(false);
+    showStars(false,-12);
 } else if(zoomLevel &lt; 500){
     showMeteor(true);
+    showStars(true,-12);
 }
+
+if(zoomLevel &gt;= 750){
+    showStars(false,-11);
+} else if(zoomLevel &lt; 750){
+    showStars(true,-11);
+}
+
+if(zoomLevel &gt;= 1000){
+    showStars(false,-10);
+    showGalaxy(true);
+} else if(zoomLevel &lt; 1000){
+    showStars(true,-10);
+    showGalaxy(false);
+}
+
 
 
 </string>
