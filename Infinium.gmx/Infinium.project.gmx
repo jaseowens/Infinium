@@ -76,12 +76,14 @@
   <objects name="objects">
     <object>objects\oShip</object>
     <object>objects\oMouse</object>
+    <object>objects\oController</object>
     <objects name="Space Objects">
       <object>objects\oPlanet</object>
       <object>objects\oMeteor</object>
       <object>objects\oChunk</object>
       <object>objects\oInfinium</object>
       <object>objects\oGalaxy</object>
+      <object>objects\oSolarSystem</object>
       <object>objects\oBlackHole</object>
     </objects>
     <objects name="Lasers">
@@ -102,10 +104,10 @@
       <object>objects\oPlusButton</object>
       <object>objects\oMinusButton</object>
     </objects>
-    <object>objects\oController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rMain</room>
+    <room>rooms\rGalaxy</room>
     <room>rooms\rTitle</room>
     <room>rooms\rPlanet</room>
     <room>rooms\rUpgrade</room>

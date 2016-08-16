@@ -11,7 +11,7 @@ for(i = 0; i < amountOfGalaxies; i++){
     xx = irandom_range(-Width/2,Width/2);
     yy = irandom_range(-Height/2,Height/2);
     
-    p = instance_create(xx,yy,oGalaxy);
+    p = instance_create(xx,yy,oSolarSystem);
     p.number = i;
     global.array[i] = p;
     

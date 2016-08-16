@@ -29,10 +29,6 @@
 
 //Create
 
-
-//User Control
-userControl = true;
-
 //Center of screen
 x = room_width/2;
 y = room_height/2;
@@ -78,40 +74,6 @@ countdown = 5;
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Zoom Vars
-
-baseWidth = view_wview[0];
-baseHeight = view_hview[0];
-zoomLevel = 100;
-zoomType = "none";
-zoomPerStep = 0;
-zoomChange = 0.05;
-zoomFactor = 1;
-maxZoom = 80;
-minZoom = 2000;
-
-s = 1;
-
-</string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="3" enumb="0">
       <action>
@@ -132,7 +94,7 @@ s = 1;
             <kind>1</kind>
             <string>///Movement
 
-if(userControl == true){
+if(global.userControl == true){
 
 
 //use script found online to smoothly rotate the ship towards the mouse, at the speed set at the end.
@@ -245,101 +207,11 @@ tile_layer_shift(-10,hsp*0.06125,vsp*0.06125);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Zoom
-if(userControl == true){
-//Center of screen(view) is set and stored in this vars.
-var viewCenterX, viewCenterY;
-viewCenterX = view_xview[0] + view_wview[0] / 2;
-viewCenterY = view_yview[0] + view_hview[0] / 2;
-
-//Change based on what direction the user is scrolling
-switch(zoomType){
-    //Scrolling up, zooms "in"
-    case "in":
-        //Maths, to get the amount of zoom per step.
-        zoomLevel = min(zoomLevel + (zoomFactor * zoomPerStep), minZoom);
-        break;
-    //Scrolling down, zooms "out".
-    case "out":
-        //Maths, to get the amount of zoom per step.
-        zoomLevel = max(zoomLevel - (zoomFactor * zoomPerStep), maxZoom);
-        break;
-}
-
-//Actually seting the zoom to be what was calculated above.
-view_wview[0] = baseWidth *(zoomLevel / 100);
-view_hview[0] = baseHeight *(zoomLevel / 100);
-//Recentering screen
-view_xview[0] = viewCenterX - view_wview[0] / 2;
-view_yview[0] = viewCenterY - view_hview[0] / 2;
-
-if(zoomPerStep &gt; 0){
-    zoomPerStep -= zoomChange;
-} else{
-    zoomType = "none";
-}
-
-//Have to manually set the view or the player is stuck in the room.
-view_hborder[0] = 1280;
-view_vborder[0] = 720;
-view_xview[0]=x-(view_wview[0]/2);
-view_yview[0]=y-(view_hview[0]/2);
-
-
-if(mouse_wheel_up()){
-    //Mouse wheel up = out
-    zoomType = "out";
-    //ZPS
-    zoomPerStep = 2.5;
-}
-
-if(mouse_wheel_down()){
-    //Mouse Wheel down = "in"
-    zoomType = "in";
-    //ZPS
-    zoomPerStep = 2.5;
-}
-
-if(keyboard_check(vk_lalt)){
-    //Mouse Wheel down = "in"
-    s+=0.1;
-    zoomLevel += s;
-} else if(keyboard_check(vk_ralt)){
-    //Mouse Wheel down = "in"
-    s+=0.1;
-    if(zoomLevel &gt; 80){
-        zoomLevel -= s;
-    }
-} else{
-    s = 1;
-}
-
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
             <string>///Left Click
 
 //Fire
 
-if(userControl == true){
+if(global.userControl == true){
 //If cant shoow
 if(!canShoot){
     //and timer is still not where it needs to be
@@ -375,7 +247,7 @@ if(mouse_check_button(mb_left) &amp;&amp; canShoot &amp;&amp; !place_meeting(mou
 if(mouse_check_button(mb_left) &amp;&amp; place_meeting(mouse_x,mouse_y,oHoverable)){
     p = instance_place(mouse_x,mouse_y,oPlanet);
     gotoPlanet(instance_place(mouse_x,mouse_y,oPlanet));
-    oShip.userControl = false; 
+    global.userControl = false; 
     with(oShip){
         desX = p.x;
         desY = p.y;
@@ -405,7 +277,7 @@ if(mouse_check_button(mb_left) &amp;&amp; place_meeting(mouse_x,mouse_y,oHoverab
           <argument>
             <kind>1</kind>
             <string>///Upgrade Screen
-if(userControl == true){
+if(global.userControl == true){
 //Key to go to the upgrade screen. 
 if(keyboard_check_released(ord('E'))){
     room_goto(rUpgrade);
@@ -434,32 +306,9 @@ if(keyboard_check_released(ord('E'))){
           <argument>
             <kind>1</kind>
             <string>///Optimization
+
 instance_activate_all();
 instance_deactivate_region(view_xview[0] - 64, view_yview - 64, view_wview[0] + 128, view_hview + 128, false, false);
-
-if(zoomLevel &gt;= 500){
-    showMeteor(false);
-    showStars(false,-12);
-} else if(zoomLevel &lt; 500){
-    showMeteor(true);
-    showStars(true,-12);
-}
-
-if(zoomLevel &gt;= 750){
-    showStars(false,-11);
-} else if(zoomLevel &lt; 750){
-    showStars(true,-11);
-}
-
-if(zoomLevel &gt;= 1000){
-    showStars(false,-10);
-    showGalaxy(true);
-} else if(zoomLevel &lt; 1000){
-    showStars(true,-10);
-    showGalaxy(false);
-}
-
-
 
 </string>
           </argument>
@@ -523,30 +372,6 @@ with(other){
           <argument>
             <kind>1</kind>
             <string>///GUI
-//global.length is set in the mouse object.
-//Returns length to center of screen
-l = global.length/250;
-//pointdirection gives the angle from mouse and center of screen
-d = point_direction(view_wview[0]/2,view_hview[0]/2,mouse_x,mouse_y);
-
-
-
-
-
-//Used to add/subtract from gui's base position
-xChange = lengthdir_x(l,d);
-yChange = lengthdir_y(l,d);
-
-       if(mouse_x &gt;= view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &lt;= view_yview[0]+view_hview[0]/2){
-            yChange *= -1;
-} else if(mouse_x &lt; view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &lt;= view_yview[0]+view_hview[0]/2){
-            xChange *= -1;
-            yChange *= -1;
-} else if(mouse_x &gt;= view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &gt; view_yview[0]+view_hview[0]/2){
-            //nothing
-} else if(mouse_x &lt; view_xview[0]+view_wview[0]/2 &amp;&amp; mouse_y &gt; view_yview[0]+view_hview[0]/2){
-            xChange *= -1;
-}
 
 //Set GUI size
 display_set_gui_size(1280,720);
@@ -559,14 +384,12 @@ draw_set_colour(c_white);
 draw_set_halign(fa_left);
 
 //Text
-draw_text(5 + xChange,  2 + yChange, "Delta: "        + string(fps_real));
-draw_text(5 + xChange, 16 + yChange, "FPS: "          + string(fps));
-draw_text(5 + xChange, 30 + yChange, "Speed: "        + string(speed));
-draw_text(5 + xChange, 44 + yChange, "xChange: "      + string(xChange));
-draw_text(5 + xChange, 60 + yChange, "yChange: "      + string(yChange));
-draw_text(5 + xChange, 74 + yChange, "Stage: "        + string(stage));
-draw_text(5 + xChange, 88 + yChange, "InstCount: "    + string(instance_count));
-draw_text(5 + xChange, 102+ yChange, "ZoomLevel: "    + string(zoomLevel));
+draw_text(5,  2, "Delta: "        + string(fps_real));
+draw_text(5, 16, "FPS: "          + string(fps));
+draw_text(5, 30, "Speed: "        + string(speed));
+draw_text(5, 44, "Stage: "        + string(stage));
+draw_text(5, 60, "InstCount: "    + string(instance_count));
+draw_text(5, 74,"ZoomLevel: "    + string(oController.zoomLevel));
 
 //B = Electric Blue
 b = $A9A209;
@@ -576,9 +399,9 @@ g = $54A909;
 //Set alpha to 0.75 for effect
 draw_set_alpha(0.75);
 //Draw the boostbar spreite at set location
-draw_sprite(sBB,0,10 + xChange,710 + yChange);
+draw_sprite(sBB,0,10,710);
 //Draw hbar with total of speed.
-draw_healthbar(13 + xChange,710 + yChange,341 + xChange,660 + yChange,speed*4,c_white,g,b,0,false,false);
+draw_healthbar(13,710,341,660,speed*4,c_white,g,b,0,false,false);
 //Reset alpha
 draw_set_alpha(1);
 
