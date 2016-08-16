@@ -98,7 +98,7 @@ if(global.userControl == true){
 
 
 //use script found online to smoothly rotate the ship towards the mouse, at the speed set at the end.
-image_angle = smooth_rotate(image_angle, point_direction(x,y,mouse_x,mouse_y), 14);
+image_angle = smooth_rotate(image_angle, point_direction(x,y,mouse_x,mouse_y), 10);
 //Direction is = to the image angle
 dir = image_angle;
 
@@ -110,6 +110,7 @@ if(keyboard_check(vk_space)){
     
     //Thrust amount is based on distance to mouse, higher the /x is the slower the ships gets up to max speed. 
     thrust += distance_to_point(mouse_x,mouse_y)/10000;
+    show_debug_message(thrust);
     //Thrust is also capped at a set amount of 5. 
     if(thrust &gt; 5){
         thrust = 5;
@@ -118,6 +119,8 @@ if(keyboard_check(vk_space)){
     //Hsp and Vsp are set to += the lengthdir of thrust and dir. 
     hsp += lengthdir_x(thrust,dir);
     vsp += lengthdir_y(thrust,dir);
+    show_debug_message(hsp);
+    show_debug_message(vsp);
     
 } else{
     //If not thrusting, thrust will eventually be set to zero.
@@ -458,6 +461,29 @@ draw_line(x,y,p.x,p.y,);
 //Draw the ship above the trail
 draw_self();
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="27">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>room_goto(rTitle);
 </string>
           </argument>
         </arguments>

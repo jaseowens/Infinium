@@ -63,8 +63,6 @@ s = 1;
           <argument>
             <kind>1</kind>
             <string>///Globals
-
-global.userControl = true;
 instance_create(x,y,oShip);
 </string>
           </argument>

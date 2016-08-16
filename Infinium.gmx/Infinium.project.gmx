@@ -67,15 +67,18 @@
       <script>scripts\generateSpaceObjects.gml</script>
       <script>scripts\newGeneration.gml</script>
     </scripts>
+    <script>scripts\worldSizeOptions.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\faConsole</font>
+    <font>fonts\faWorldOptions</font>
     <font>fonts\faTitle</font>
     <font>fonts\faSubtitles</font>
   </fonts>
   <objects name="objects">
     <object>objects\oShip</object>
     <object>objects\oMouse</object>
+    <object>objects\oGlobals</object>
     <object>objects\oController</object>
     <objects name="Space Objects">
       <object>objects\oPlanet</object>
@@ -94,6 +97,7 @@
       <object>objects\oOrb</object>
       <object>objects\oMeteorTitleScreen</object>
       <object>objects\oTitleText</object>
+      <object>objects\oWorldSizeOptions</object>
       <object>objects\oTitleTrail</object>
       <object>objects\oTitleMovement</object>
       <object>objects\oArrowTitle</object>
@@ -106,9 +110,9 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rTitle</room>
     <room>rooms\rMain</room>
     <room>rooms\rGalaxy</room>
-    <room>rooms\rTitle</room>
     <room>rooms\rPlanet</room>
     <room>rooms\rUpgrade</room>
   </rooms>

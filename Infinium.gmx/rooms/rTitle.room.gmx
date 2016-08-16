@@ -56,6 +56,7 @@
     <instance objName="oOrb" x="982" y="523" name="inst_47A581E1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oArrowTitle" x="762" y="794" name="inst_C2E1AB4E" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oMouse" x="192" y="174" name="inst_140BD398" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oGlobals" x="121" y="77" name="inst_6D4FD344" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
