@@ -105,11 +105,12 @@ dir = image_angle;
 //If pressing space -&gt; Move
 if(keyboard_check(vk_space)){
     //Sets a max amount to the hsp and vsp, with 0.8 =&gt; ~25.
-    hsp *= 0.80;
-    vsp *= 0.80;
+    hsp *= 0.95;
+    vsp *= 0.95;
+
     
     //Thrust amount is based on distance to mouse, higher the /x is the slower the ships gets up to max speed. 
-    thrust += distance_to_point(mouse_x,mouse_y)/10000;
+    thrust += distance_to_point(mouse_x,mouse_y)/100000;
     show_debug_message(thrust);
     //Thrust is also capped at a set amount of 5. 
     if(thrust &gt; 5){
@@ -189,6 +190,16 @@ tile_layer_shift(-10,hsp*0.06125,vsp*0.06125);
     }
 }
 
+/*
+if(speed &gt; 75){
+    speed = 75;
+}
+if(hspeed &gt; 75){
+    hspeed = 75;
+}
+if(vspeed &gt; 75){
+    vspeed = 75;
+}
 
 </string>
           </argument>
@@ -379,6 +390,7 @@ with(other){
 //Set GUI size
 display_set_gui_size(1280,720);
 
+
 //Font is set to console
 draw_set_font(faConsole);
 //Color of text is white
@@ -447,7 +459,7 @@ if(drawCountdown = true){
 //Set alpha to 0.75 for effect
 draw_set_alpha(0.75);
 //Actually draw the trail, with script
-draw_trail(32,4,c_gray,-1,true,1);
+draw_trail(256,16,c_gray,-1,true,1);
 //Reset alpha to 1.
 draw_set_alpha(1);
 
